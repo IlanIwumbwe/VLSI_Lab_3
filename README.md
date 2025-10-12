@@ -11,16 +11,30 @@
 ### Objectives
 ---
 By the end of this laboratory session, you should be able to do the following.
-* Understand the different mask layers that make up the layout of an inverter.
-* Manually extract the circuit schematic of a 12-transistors logic gate from its layout.
-* Import a Verilog netlist into Virtuoso as a schematic.
-* Use Cadence's Virtuoso tool to perform manual floorplanning and placement.
-* Use Cadence's Virtuoso tool to perform manual routing.
-* Use Cadence's Calibre tool to verify that your layout obeys design rules through DRC.
-* Use Cadence's Calibre tool to verify that your layout is the same as the schematic.
+* Use TSMC's memory compiler tool to generate efficient memory.
+* Integrate a block of logic implement using standard cells with generated memory.
+* Verify that the entire system works properly using built-in self-test.
 
 ---
-### Task 1 - Deep Dive into Inverter Layout (30 minutes)
+### Task 1 - Generate 32 x 32 SRAM 
 ---
-The purpose of this task is to understand the different mask layers that make up a simple inverter from the layout.  This helps you to appreciate the fabrication process and the physical aspect of VLSI design.
 
+
+**_Step 1: Launch the memory compiler
+
+* Create a new directory for this lab, say, LAB_3 and change to that directory.
+* Launch TSMC's pdk with:
+  ``` bash
+  pdk TSMC65LP
+  ```
+* Launch TSMC's **Memory Compiler** with:
+``` bash
+tsmcmemcomp spsram
+```
+>The argument **_spsram_** generates a single port RAM with a write port with its own write address and data input, and one read port with its own read address and data out.
+>The argument **_dpsram_** generatess a dual port RAM with a single write port (own addresa and data), and two separate read ports.
+
+* Clck **_OK_** and **_Run MC2__** in the pop-up windows.
+
+
+<p align="center"> <img src="diagrams/init.jpg" width="1000" height="250"> </p><BR>
