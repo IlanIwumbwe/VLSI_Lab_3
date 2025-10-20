@@ -113,13 +113,14 @@ Design these three modules in SystemVerilog and create a top-level design to com
 
 **_Step 3: Generate the physical layout with Innovus_**
 * Modify the **_PnR_** file from Lab 1 to place and route the design with **_Innovus_**.
-  > You might need to change the script settings, add memory libraries and modify the mmmc script.
+  
+  You might need to change the script settings, add memory libraries and modify the mmmc script.
   
   After you have initialised the design with the command `init_design`, you can visualise the macro blocks (such as the memory included in your design) using the button <img src="diagrams/visualise_macro.PNG" height="25"> on the top right corner. You might need to change the die area aspect ratio or dimensions to fit the memory.
   
-  Macro blocks can be moved inside the die area using button <img src="diagrams/move-button.png" height="25"> in the top left corner or the command `placeInstance`. After the macros have been placed, add the power ring around the memory block using `addRing`. Use `addHaloToBlock` or the halo button <img src="diagrams/halo_button.png" height="25"> in the toolbar to add a placement blockage to ensure standard cells and routing are kept away from the macro edges. 
+  Macro blocks can be moved inside the die area using button <img src="diagrams/move-button.png" height="25"> in the top left corner or the command `placeInstance`. After the macros have been placed, add the power ring around the memory block using `addRing`. Use `addHaloToBlock` to add a placement blockage to ensure standard cells and routing are kept away from the macro edges. 
 
-  To know more about the commands, refer to the Cadence documentation ([here](http://www.ee.ic.ac.uk/pcheung/teaching/EE4_VLSI/document_locations.pdf)) or use `man <command>` from the Innovus UI.
+  > To know more about the commands, refer to the Cadence documentation ([here](http://www.ee.ic.ac.uk/pcheung/teaching/EE4_VLSI/document_locations.pdf)) or use `man <command>` from the Innovus UI.
 
 * Generate a GDS II file to export the design using the following command:
   ```tcl
