@@ -3,9 +3,9 @@
 
 #### ELEC70142 Digital VLSI Design
 
-### Lab 3 - Memory and Self-test
+### Lab 3 - Memory and Standard Cells together
 
-##### *Peter Cheung, v1.0 - 23 October 2025*
+##### *Peter Cheung, v1.2 - 23 October 2025*
 
 ---
 ### Objectives
@@ -13,7 +13,7 @@
 By the end of this laboratory session, you should be able to do the following.
 * Use TSMC's memory compiler tool to generate efficient memory.
 * Integrate a block of logic implement using standard cells with generated memory.
-* Verify that the entire system works properly using built-in self-test.
+* Verify that the entire system works properly using simulation.
 
 ---
 ### Task 1 - Generate 32 x 32 SRAM 
@@ -136,25 +136,5 @@ Design these three modules in SystemVerilog and create a top-level design to com
 * Use the procedure in Task 1 of this lab to import the GDS II layout of the PnR circuit. Examine the layout in **_Virtuoso_**.
 
 **_Step 4: Design a testbench_**
-* Design a testbench to test this circuit using **_ncverilog_**.
-
----
-### The Challenge
-___
-
-<p align="center"> <img src="diagrams/cct_2.jpg" width="1200" height="200"> </p><BR>
-
-The system above is an extension of the circuit in Task 2 with a built-in self-test circuit. Instead of inspect the output from the simulator, this circuit  compresses the SRAM output sequence to produce an expected 16-bit signature. Deviation from the expectation indicates an error in the circuit.
-
-In Lab 1, you designed a serial signature analyzer that compress sequence of '1's and '0's to a 16-bit signature.  This circuit can be modified into a parallel signature analyzer that produces a unique signature for a 16-bit, instead of 1-bit, input using the circuit shown below.
-
-<p align="center"> <img src="diagrams/signature_16.jpg" width="1200" height="250"> </p><BR>
-
-This circuit "merges" the 16-bit signature of DUT to the LFSR to produce the signature.  
-
-SRAM data output is 32-bit.  One possibility is to XOR neighbouring two bits and feed outputs of the 16 XOR gates to the parallel signature analyzer.
-
-You will also need to modify the FSM to ensure that a test cycle is performed whenever the test input command goes from low to high, and produces the 16-bit signature. This can then be compared with the expected value and produces a GO/NO_GO output.
-
-
+* Design a testbench to test this circuit using **_ncverilog_** (as in Lab 1 Task 4.)
 
