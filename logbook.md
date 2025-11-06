@@ -15,6 +15,12 @@ BIST_Enable = no
 <img width="2167" height="701" alt="Screenshot from 2025-10-23 13-12-03" src="https://github.com/user-attachments/assets/017e6f9c-89b8-4bbf-bbd2-7dc2438d3778" />
 
 ## Task 2
+
+Implemented this design:
+
+<img width="852" height="308" alt="image" src="https://github.com/user-attachments/assets/174d3b99-eb09-49b0-99b1-5fffd5e53319" />
+
+
 <img width="1544" height="811" alt="Screenshot from 2025-10-24 15-44-53" src="https://github.com/user-attachments/assets/49284404-d8ec-4b78-a395-8d2b43c3cbe3" />
 
 Physical layout of ram block with circuit
