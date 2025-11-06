@@ -1,4 +1,4 @@
-# VLSI Lab 4 Logbook - Using TSMC's memory compiler
+# VLSI Lab 3 Logbook - Using TSMC's memory compiler
 
 ## Task 1 - Generate 32x32 SRAM
 
