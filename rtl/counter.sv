@@ -1,23 +1,13 @@
-module counter#(
-	parameter DATA_WIDTH = 5
-)
-(
-	input logic clk,
-	input logic rst,
-
-	input logic en_i,
-
-	output logic [DATA_WIDTH-1:0] out_o
+module Counter (
+    input logic clk,
+    input logic rst,
+    input logic en,
+    output logic [4:0] count
 );
-	
-
-logic [DATA_WIDTH-1:0] out = (en_i) ? out_o + 1'b1 : out_o;
-
-always_ff @(posedge clk) begin
-	if(rst)
-		out_o <= 'b0;		
-	else
-		out_o <= out;
-end
-
+    always_ff @(posedge clk) begin
+        if (rst)
+            count <= 5'd0;
+        else if (en)
+            count <= count + 1;
+    end
 endmodule
