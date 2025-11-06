@@ -1,32 +1,45 @@
-## Task 1
-
-1. Memory layout looks like this:
-Number of Words = 32
-Number of Bits = 32
-Column Mux Ratio = 4
-Name of Ground pin = VSS
-BIST_Enable = no
+## Task 1 - Generate 32x32 SRAM
 
 <img width="481" height="200" alt="Screenshot from 2025-10-23 12-24-36" src="https://github.com/user-attachments/assets/7eb63b0b-9c01-4649-9766-27e7ff1ac361" />
 
-3. Netlist of memory block has input ports `A` and `D` for address and data write to the memory, output ports is `Q` for data read from the memory.
+(dimensions of memory layout)
 
-4. Importing the GDSII layout
+**How we did it:**
+- Launched TSMC memory compiler with `tsmcmemcomp spsram` command
+- Configured memory parameters: 32 words × 32 bits, column mux ratio 4, VSS ground
+- Set operating point to typical (tt1p2v25c: 1.2V, 25°C)
+- Generated netlist and models using AutoName Memory feature
+- Imported GDSII layout into Virtuoso using XStream with proper layer mapping
+
 <img width="2167" height="701" alt="Screenshot from 2025-10-23 13-12-03" src="https://github.com/user-attachments/assets/017e6f9c-89b8-4bbf-bbd2-7dc2438d3778" />
 
-## Task 2
+- Examined generated Verilog netlist to identify ports (A=address, D=write data, Q=read data)
 
-Implemented this design:
+
+## Task 2 - Integrate Memory with Logic
 
 <img width="852" height="308" alt="image" src="https://github.com/user-attachments/assets/174d3b99-eb09-49b0-99b1-5fffd5e53319" />
+
+**How we did it:**
+- Designed system with 3 modules around SRAM: 5-bit address counter, 16-bit PRBS generator, FSM controller
+- FSM controls write/read sequence: fills 32 words, then reads them back
+- Created SystemVerilog implementation combining all modules
+- Synthesized with Genus and placed/routed with Innovus alongside memory block
+- Verified functionality with testbench comparing model vs DUT outputs
+- All 32 addresses tested successfully with matching data patterns
+
+
 
 
 <img width="1544" height="811" alt="Screenshot from 2025-10-24 15-44-53" src="https://github.com/user-attachments/assets/49284404-d8ec-4b78-a395-8d2b43c3cbe3" />
 
-Physical layout of ram block with circuit
+Physical layout of memory block with circuit:
+
 <img width="1544" height="811" alt="image" src="https://github.com/user-attachments/assets/cfcd1521-0274-4e8a-873e-1713adf7f904" />
 
-Testbench:
+
+### NCVerilog Testbench passes:
+
 ```
 T:                  350 #: 0 MDL: ffff	 DUT: ffff --> PASS
 
@@ -285,6 +298,8 @@ T:                 2570 #:30 MDL: 29ee	 DUT: 29ee --> PASS
 T:                 2580 #:31 MDL: 53dd	 DUT: 53dd --> PASS
 
 ```
+
+### GTKWave for verification
 
 Data write:
 <img width="1669" height="156" alt="Screenshot from 2025-10-24 17-16-33" src="https://github.com/user-attachments/assets/2520bab4-6b4f-407f-9ecc-59e622b9a346" />
