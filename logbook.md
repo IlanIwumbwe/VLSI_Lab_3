@@ -1,3 +1,5 @@
+# VLSI Lab 4 Logbook - Using TSMC's memory compiler
+
 ## Task 1 - Generate 32x32 SRAM
 
 <img width="481" height="200" alt="Screenshot from 2025-10-23 12-24-36" src="https://github.com/user-attachments/assets/7eb63b0b-9c01-4649-9766-27e7ff1ac361" />
